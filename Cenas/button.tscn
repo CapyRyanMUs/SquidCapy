@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bmduv02bx833o"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(2.14119, 2.71013)
+text = "cu cu cu"
