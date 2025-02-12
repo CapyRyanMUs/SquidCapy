@@ -1,12 +1,16 @@
 extends State
 class_name BotStop
 
+var IsConnect = false
+
 @export var Char : CharacterBody2D 
 func ChangeState():
 	change.emit(self, "Move")
 func enter():
 	StopMove()
-	Char.MainNode.LightChanged.connect(ChangeState)
+	if !IsConnect:
+		Char.MainNode.LightChanged.connect(ChangeState)
+		IsConnect = true
 
 func update(delta):
 	pass

@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://b68wvo30vwctj"]
+
+[ext_resource type="Script" path="res://Scripts/menu_options.gd" id="1_6pyu7"]
+[ext_resource type="PackedScene" uid="uid://bmduv02bx833o" path="res://CenasInstancias/button.tscn" id="1_kiqnu"]
+[ext_resource type="PackedScene" uid="uid://cijik7x8quv8t" path="res://Cenas/option_button.tscn" id="2_mk1oy"]
+[ext_resource type="FontFile" uid="uid://10vfirk1yxkg" path="res://PeaberryBase.ttf" id="3_yahu0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7hts"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MenuOptionsControl" type="Control" node_paths=PackedStringArray("StartButton", "BotNumbers")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6pyu7")
+StartButton = NodePath("CanvasLayer/MarginContainer/VboxContainer/StartButton")
+BotNumbers = NodePath("CanvasLayer/MarginContainer2/VBoxContainer/BotOption")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.991128)
+color = Color(0, 0.37, 0.197333, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BotOption" parent="CanvasLayer/MarginContainer2/VBoxContainer" instance=ExtResource("2_mk1oy")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_yahu0")
+text = "OPÇÔES DE INICIO"
+label_settings = SubResource("LabelSettings_x7hts")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_right = -92.0
+offset_bottom = -164.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="VboxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="StartButton" parent="CanvasLayer/MarginContainer/VboxContainer" instance=ExtResource("1_kiqnu")]
+z_index = 100
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "COMEÇAR"
+
+[node name="MoreButton" parent="CanvasLayer/MarginContainer/VboxContainer" instance=ExtResource("1_kiqnu")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "MAIS"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VboxContainer/StartButton" to="." method="_on_start_button_pressed"]

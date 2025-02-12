@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8jpksrqqd5i1"]
+
+[ext_resource type="PackedScene" uid="uid://b1d78d41ri4v6" path="res://Cenas/MainNode.tscn" id="1_8qugq"]
+[ext_resource type="PackedScene" uid="uid://b68wvo30vwctj" path="res://Cenas/MenuOptions.tscn" id="2_0hl8c"]
+[ext_resource type="PackedScene" uid="uid://dbgssea0vu6pc" path="res://CenasInstancias/player.tscn" id="3_dlpa0"]
+[ext_resource type="PackedScene" uid="uid://ds1fybfy34dai" path="res://CenasInstancias/Bot.tscn" id="4_fojvf"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="MainNode" parent="." instance=ExtResource("1_8qugq")]
+
+[node name="Marker2D" type="Marker2D" parent="MainNode"]
+position = Vector2(2304, 784)
+
+[node name="MenuOptionsControl" parent="." node_paths=PackedStringArray("MainNode", "area_spawn") instance=ExtResource("2_0hl8c")]
+MainNode = NodePath("../MainNode")
+Player = ExtResource("3_dlpa0")
+Bot = ExtResource("4_fojvf")
+area_spawn = NodePath("../MainNode/SpawnArea")
+
+[editable path="MainNode"]

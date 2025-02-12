@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/filo.gd" id="1_l4acl"]
 [ext_resource type="Texture2D" uid="uid://dvn6ufaptdqs5" path="res://Assets/Capys/Capy Idle.png" id="2_3ue8k"]
-[ext_resource type="PackedScene" uid="uid://c1uep6mufevwn" path="res://Cenas/ui_controls.tscn" id="3_itqm1"]
+[ext_resource type="PackedScene" uid="uid://c1uep6mufevwn" path="res://CenasInstancias/ui_controls.tscn" id="3_itqm1"]
 [ext_resource type="Texture2D" uid="uid://d0rfrrunjqupj" path="res://Assets/Capys/Capy Walk.png" id="4_l1ryl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dg42u"]

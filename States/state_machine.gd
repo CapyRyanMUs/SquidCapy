@@ -7,6 +7,7 @@ var states : Dictionary = {}
 @export var initial_state : State
 
 func _ready():
+	await get_tree().create_timer(1).timeout
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child

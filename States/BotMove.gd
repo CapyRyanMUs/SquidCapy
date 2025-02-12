@@ -3,10 +3,13 @@ class_name BotMove
 
 @export var Char : CharacterBody2D
 
-func enter():
-	Char.MainNode.LightChanged.connect(ChangeState())
-func update(delta):
-	Char.Direction = Vector2.LEFT
+var IsConnect = false
 
 func ChangeState():
-	change.emit(self,"Move")
+	change.emit(self,"Stop")
+func enter():
+	if !IsConnect:
+		Char.MainNode.LightChanged.connect(ChangeState)
+		IsConnect = true
+func update(delta):
+	Char.Direction = Vector2.LEFT

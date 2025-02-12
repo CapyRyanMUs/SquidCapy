@@ -4,18 +4,18 @@ extends Control
 @export var EffectScreen : ColorRect
 @export var Anim : AnimationPlayer
 
-@export var SceneNode : Node2D
+@onready var MainNode : Node2D = get_node("/root/MainScene/MainNode")
 
 func CU():
 	get_tree().quit()
 
 func AnimEffect():
-	if SceneNode:
-		if SceneNode.GreenLight:
+	if MainNode:
+		if MainNode.GreenLight:
 			Anim.play("GreenLight")
 		else:
 			Anim.play("RedLight")
 
 func _ready() -> void:
 	ExitButton.pressed.connect(CU)
-	SceneNode.LightChanged.connect(AnimEffect)
+	MainNode.LightChanged.connect(AnimEffect)

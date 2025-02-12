@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cijik7x8quv8t"]
+
+[ext_resource type="FontFile" uid="uid://10vfirk1yxkg" path="res://PeaberryBase.ttf" id="1_h6w0a"]
+
+[node name="OptionButton" type="OptionButton"]
+offset_right = 160.0
+offset_bottom = 60.0
+theme_override_fonts/font = ExtResource("1_h6w0a")
+theme_override_font_sizes/font_size = 30
+alignment = 1
+selected = 1
+item_count = 2
+popup/item_0/text = "2 bots"
+popup/item_1/text = "5 bots"
+popup/item_1/id = 1

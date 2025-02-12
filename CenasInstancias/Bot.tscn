@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=3 uid="uid://ds1fybfy34dai"]
 
-[ext_resource type="Script" path="res://Scripts/Bot.gd" id="1_e7ll0"]
-[ext_resource type="Texture2D" uid="uid://dvn6ufaptdqs5" path="res://Assets/Capys/Capy Idle.png" id="2_k21hj"]
-[ext_resource type="Script" path="res://States/state_machine.gd" id="3_67g4g"]
-[ext_resource type="Script" path="res://States/BotStop.gd" id="4_cmjdl"]
-[ext_resource type="Texture2D" uid="uid://d0rfrrunjqupj" path="res://Assets/Capys/Capy Walk.png" id="4_d3eik"]
-[ext_resource type="Script" path="res://States/BotMove.gd" id="6_eljsl"]
+[ext_resource type="Script" path="res://Scripts/Bot.gd" id="1_u0ft4"]
+[ext_resource type="Texture2D" uid="uid://dvn6ufaptdqs5" path="res://Assets/Capys/Capy Idle.png" id="2_e1wxt"]
+[ext_resource type="Texture2D" uid="uid://d0rfrrunjqupj" path="res://Assets/Capys/Capy Walk.png" id="3_4c05f"]
+[ext_resource type="Script" path="res://States/state_machine.gd" id="4_fsyqs"]
+[ext_resource type="Script" path="res://States/BotStop.gd" id="5_gp6dh"]
+[ext_resource type="Script" path="res://States/BotMove.gd" id="6_qo84j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbspj"]
 size = Vector2(96, 80)
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_k21hj")]
+"values": [ExtResource("2_e1wxt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -81,7 +81,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_k21hj")]
+"values": [ExtResource("2_e1wxt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -135,7 +135,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_d3eik")]
+"values": [ExtResource("3_4c05f")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -185,7 +185,7 @@ _data = {
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_e7ll0")
+script = ExtResource("1_u0ft4")
 
 [node name="BackArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -209,7 +209,7 @@ scale = Vector2(0.60089, 0.471874)
 shape = SubResource("RectangleShape2D_dg42u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k21hj")
+texture = ExtResource("2_e1wxt")
 hframes = 2
 
 [node name="Anim" type="AnimationPlayer" parent="."]
@@ -219,15 +219,15 @@ libraries = {
 autoplay = "Idle"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_67g4g")
+script = ExtResource("4_fsyqs")
 initial_state = NodePath("Stop")
 
 [node name="Stop" type="Node" parent="StateMachine" node_paths=PackedStringArray("Char")]
-script = ExtResource("4_cmjdl")
+script = ExtResource("5_gp6dh")
 Char = NodePath("../..")
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("Char")]
-script = ExtResource("6_eljsl")
+script = ExtResource("6_qo84j")
 Char = NodePath("../..")
 
 [node name="LoopTimer" type="Timer" parent="."]
