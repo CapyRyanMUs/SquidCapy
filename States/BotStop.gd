@@ -8,12 +8,13 @@ func ChangeState():
 	change.emit(self, "Move")
 func enter():
 	StopMove()
-	if !IsConnect:
-		Char.MainNode.LightChanged.connect(ChangeState)
-		IsConnect = true
+	Char.MainNode.LightChanged.connect(ChangeState)
+
+func exit():
+	Char.MainNode.LightChanged.disconnect(ChangeState)
 
 func update(delta):
-	pass
+	Char.Anim.play("%s/Idle" %Char.Sex) 
 
 func StopMove():
 	var TimeStop = randf_range(0.1, 1.0)

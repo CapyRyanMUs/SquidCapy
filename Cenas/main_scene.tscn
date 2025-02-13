@@ -8,6 +8,7 @@
 [node name="MainScene" type="Node2D"]
 
 [node name="MainNode" parent="." instance=ExtResource("1_8qugq")]
+GreenLight = false
 
 [node name="Marker2D" type="Marker2D" parent="MainNode"]
 position = Vector2(2304, 784)

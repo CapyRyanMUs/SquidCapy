@@ -8,6 +8,16 @@ extends Control
 
 @export var area_spawn : Area2D
 
+var RangeBots : int
+
+var BotsOptions : Dictionary = {
+	"2 bots" : 2,
+	"5 bots" : 5,
+	"10 bots" : 10,
+	"20 bots" : 20
+
+}
+
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -15,8 +25,7 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	var area_position = area_spawn.position
 	var area_size = Vector2(2304 - 1936, 784 - 30)  # Largura e altura da área de spawn
-
-	for i in range(2):
+	for i in range(RangeBots + 1):
 		var posicao_aleatoria = Vector2(
 		randi_range(1936, 2304),
 		randi_range(30, 784)
@@ -29,3 +38,6 @@ func _on_start_button_pressed() -> void:
 	PlayerObj.position = area_spawn.global_position
 	MainNode.get_node("Players").add_child(PlayerObj)
 	queue_free()
+
+func _on_bot_option_item_selected(index: int) -> void:
+	RangeBots = BotsOptions[BotNumbers.get_item_text(index)]

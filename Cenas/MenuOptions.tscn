@@ -50,6 +50,12 @@ size_flags_vertical = 4
 
 [node name="BotOption" parent="CanvasLayer/MarginContainer2/VBoxContainer" instance=ExtResource("2_mk1oy")]
 layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_2/text = "10 bots"
+popup/item_2/id = 2
+popup/item_3/text = "20 bots"
+popup/item_3/id = 3
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer2"]
 layout_mode = 2
@@ -91,4 +97,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "MAIS"
 
+[connection signal="item_selected" from="CanvasLayer/MarginContainer2/VBoxContainer/BotOption" to="." method="_on_bot_option_item_selected"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VboxContainer/StartButton" to="." method="_on_start_button_pressed"]
