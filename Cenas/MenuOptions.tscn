@@ -1,16 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://b68wvo30vwctj"]
 
-[ext_resource type="Script" path="res://Scripts/menu_options.gd" id="1_6pyu7"]
+[ext_resource type="Script" uid="uid://cdpwsjkob6uhg" path="res://Scripts/menu_options.gd" id="1_6pyu7"]
 [ext_resource type="PackedScene" uid="uid://bmduv02bx833o" path="res://CenasInstancias/button.tscn" id="1_kiqnu"]
 [ext_resource type="PackedScene" uid="uid://cijik7x8quv8t" path="res://Cenas/option_button.tscn" id="2_mk1oy"]
-[ext_resource type="FontFile" uid="uid://10vfirk1yxkg" path="res://PeaberryBase.ttf" id="3_yahu0"]
+[ext_resource type="PackedScene" uid="uid://b7m4ame5xm7t4" path="res://CenasInstancias/label.tscn" id="3_pwgd5"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_x7hts"]
-font_size = 30
+[sub_resource type="LabelSettings" id="LabelSettings_l5kb8"]
+font_size = 20
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[node name="MenuOptionsControl" type="Control" node_paths=PackedStringArray("StartButton", "BotNumbers")]
+[node name="MenuOptionsControl" type="Control" node_paths=PackedStringArray("StartButton", "BotNumbers", "SexOption")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +20,7 @@ grow_vertical = 2
 script = ExtResource("1_6pyu7")
 StartButton = NodePath("CanvasLayer/MarginContainer/VboxContainer/StartButton")
 BotNumbers = NodePath("CanvasLayer/MarginContainer2/VBoxContainer/BotOption")
+SexOption = NodePath("CanvasLayer/MarginContainer2/VBoxContainer/SexOption")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -48,23 +49,34 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Label2" parent="CanvasLayer/MarginContainer2/VBoxContainer" instance=ExtResource("3_pwgd5")]
+layout_mode = 2
+size_flags_vertical = 4
+text = "mais bots = mais dificil"
+label_settings = SubResource("LabelSettings_l5kb8")
+
 [node name="BotOption" parent="CanvasLayer/MarginContainer2/VBoxContainer" instance=ExtResource("2_mk1oy")]
 layout_mode = 2
-selected = 0
+fit_to_longest_item = false
 item_count = 4
-popup/item_2/text = "10 bots"
+popup/item_0/text = "1 bots"
+popup/item_0/id = 0
+popup/item_1/text = "40 bots"
+popup/item_2/text = "60 bots"
 popup/item_2/id = 2
-popup/item_3/text = "20 bots"
+popup/item_3/text = "80 bots"
 popup/item_3/id = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer2"]
+[node name="SexOption" parent="CanvasLayer/MarginContainer2/VBoxContainer" instance=ExtResource("2_mk1oy")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_yahu0")
-text = "OPÇÔES DE INICIO"
-label_settings = SubResource("LabelSettings_x7hts")
-horizontal_alignment = 1
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "Male"
+popup/item_0/id = 0
+popup/item_1/text = "Female"
+
+[node name="Label" parent="CanvasLayer/MarginContainer2" instance=ExtResource("3_pwgd5")]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 11
@@ -98,4 +110,6 @@ size_flags_vertical = 0
 text = "MAIS"
 
 [connection signal="item_selected" from="CanvasLayer/MarginContainer2/VBoxContainer/BotOption" to="." method="_on_bot_option_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/MarginContainer2/VBoxContainer/SexOption" to="." method="_on_sex_option_item_selected"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VboxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VboxContainer/MoreButton" to="." method="_on_more_button_pressed"]

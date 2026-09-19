@@ -8,17 +8,28 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Capy na Batatinha"
-run/main_scene="res://Cenas/main_scene.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+config/version="1.0"
+run/main_scene="res://Cenas/session.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+boot_splash/bg_color=Color(0.427133, 0.0654709, 0.0663626, 1)
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://b0mqpk62q355x"
+config/icon="uid://b0mqpk62q355x"
 
 [display]
 
 window/size/viewport_width=576
 window/size/viewport_height=324
+window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
 window/stretch/mode="viewport"
@@ -45,6 +56,10 @@ ui_getup={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [layer_names]
 
 2d_physics/layer_1="Player"
@@ -55,3 +70,4 @@ ui_getup={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

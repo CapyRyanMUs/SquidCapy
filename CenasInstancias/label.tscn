@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7m4ame5xm7t4"]
+
+[ext_resource type="FontFile" uid="uid://10vfirk1yxkg" path="res://PeaberryBase.ttf" id="1_6chlk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7hts"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label"]
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_6chlk")
+text = "OPÇÔES DE INICIO"
+label_settings = SubResource("LabelSettings_x7hts")
+horizontal_alignment = 1

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsxlg7yodfrj5"
+path="res://.godot/imported/AVISO NUCLEAR.mp3-574766f6ecc7343aa018574440205832.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/AVISO NUCLEAR.mp3"
+dest_files=["res://.godot/imported/AVISO NUCLEAR.mp3-574766f6ecc7343aa018574440205832.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

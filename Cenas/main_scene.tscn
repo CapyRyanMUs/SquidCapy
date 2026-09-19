@@ -1,19 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8jpksrqqd5i1"]
+[gd_scene format=3 uid="uid://b8jpksrqqd5i1"]
 
 [ext_resource type="PackedScene" uid="uid://b1d78d41ri4v6" path="res://Cenas/MainNode.tscn" id="1_8qugq"]
 [ext_resource type="PackedScene" uid="uid://b68wvo30vwctj" path="res://Cenas/MenuOptions.tscn" id="2_0hl8c"]
+[ext_resource type="Texture2D" uid="uid://dkk8er25bpn0n" path="res://QUINTOLESSECRETO.png" id="2_rwqly"]
 [ext_resource type="PackedScene" uid="uid://dbgssea0vu6pc" path="res://CenasInstancias/player.tscn" id="3_dlpa0"]
 [ext_resource type="PackedScene" uid="uid://ds1fybfy34dai" path="res://CenasInstancias/Bot.tscn" id="4_fojvf"]
 
-[node name="MainScene" type="Node2D"]
+[node name="MainScene" type="Node2D" unique_id=31211796]
 
-[node name="MainNode" parent="." instance=ExtResource("1_8qugq")]
-GreenLight = false
+[node name="MainNode" parent="." unique_id=213261783 instance=ExtResource("1_8qugq")]
+RoundTimer = 75
 
-[node name="Marker2D" type="Marker2D" parent="MainNode"]
-position = Vector2(2304, 784)
+[node name="Doll" parent="MainNode" index="2"]
+collision_layer = 4
+collision_mask = 0
 
-[node name="MenuOptionsControl" parent="." node_paths=PackedStringArray("MainNode", "area_spawn") instance=ExtResource("2_0hl8c")]
+[node name="CollisionShape2D" parent="MainNode/Doll" index="0"]
+position = Vector2(-488, 304)
+
+[node name="QuintolesRef" type="Sprite2D" parent="MainNode/Doll" index="2" unique_id=1234711495]
+position = Vector2(-1112, 232)
+scale = Vector2(0.989297, 0.991803)
+texture = ExtResource("2_rwqly")
+
+[node name="MenuOptionsControl" parent="." unique_id=1419960242 node_paths=PackedStringArray("MainNode", "area_spawn") instance=ExtResource("2_0hl8c")]
 MainNode = NodePath("../MainNode")
 Player = ExtResource("3_dlpa0")
 Bot = ExtResource("4_fojvf")

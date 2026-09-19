@@ -1,11 +1,108 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1uep6mufevwn"]
+[gd_scene load_steps=16 format=3 uid="uid://c1uep6mufevwn"]
 
 [ext_resource type="Texture2D" uid="uid://d2bws464fimp8" path="res://Assets/Ui/Arrow.png" id="1_im0de"]
 [ext_resource type="Texture2D" uid="uid://dr8wogsmrkmdc" path="res://Assets/Capys/Capy Ded.png" id="2_p0ruu"]
 [ext_resource type="Texture2D" uid="uid://dcsr0u3ped84y" path="res://Assets/Ui/Run.png" id="3_4l22e"]
-[ext_resource type="Script" path="res://Scripts/UiNode.gd" id="3_bpnom"]
+[ext_resource type="Script" uid="uid://b0cxeltnaj8y5" path="res://Scripts/UiNode.gd" id="3_bpnom"]
 [ext_resource type="Texture2D" uid="uid://bsor2slq178ec" path="res://Assets/Ui/Attack.png" id="4_xsxvs"]
 [ext_resource type="Texture2D" uid="uid://bu5rgnywsqd4b" path="res://Assets/Ui/Up.png" id="5_0k6tb"]
+[ext_resource type="PackedScene" uid="uid://b7m4ame5xm7t4" path="res://CenasInstancias/label.tscn" id="6_2aq6l"]
+[ext_resource type="FontFile" uid="uid://10vfirk1yxkg" path="res://PeaberryBase.ttf" id="7_pi5is"]
+[ext_resource type="Texture2D" uid="uid://cptma2ctf1bi0" path="res://Assets/Ui/Flag.png" id="8_dre5n"]
+[ext_resource type="Texture2D" uid="uid://dwe7oypborwqk" path="res://Assets/Ui/CapyHead.png" id="9_qxbd1"]
+
+[sub_resource type="Animation" id="Animation_6tt28"]
+resource_name = "Ded"
+length = 3.0
+step = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DED:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DED:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../DED:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../DED:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.235294, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AspectRatioContainer:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../AspectRatioContainer:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../AspectRatioContainer:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../AspectRatioContainer:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.784314, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2)
+}
 
 [sub_resource type="Animation" id="Animation_h8w65"]
 resource_name = "GreenLight"
@@ -18,9 +115,9 @@ tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -29,9 +126,9 @@ tracks/1/path = NodePath(".:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -40,9 +137,9 @@ tracks/2/path = NodePath(".:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -51,9 +148,9 @@ tracks/3/path = NodePath(".:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.196078, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.196078, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 
 [sub_resource type="Animation" id="Animation_0a5vh"]
@@ -102,6 +199,94 @@ tracks/3/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../DED:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../DED:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../DED:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../DED:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../AspectRatioContainer:modulate:r")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../AspectRatioContainer:modulate:g")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../AspectRatioContainer:modulate:b")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../AspectRatioContainer:modulate:a")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.784314, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_1l2fu"]
 resource_name = "RedLight"
@@ -114,9 +299,9 @@ tracks/0/path = NodePath(".:modulate:r")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -125,9 +310,9 @@ tracks/1/path = NodePath(".:modulate:g")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -136,9 +321,9 @@ tracks/2/path = NodePath(".:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0.0166664, -0.25, 0, 0.25, 0, 0.0166664, -0.25, 0, 0.25, 0, 0.0166664, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.0166664, -0.25, 0, 0.25, 0, 0.0166664, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -147,19 +332,20 @@ tracks/3/path = NodePath(".:modulate:a")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.196078, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.2, 0.8)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.196078, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sxyrm"]
 _data = {
-"GreenLight": SubResource("Animation_h8w65"),
-"RESET": SubResource("Animation_0a5vh"),
-"RedLight": SubResource("Animation_1l2fu")
+&"Ded": SubResource("Animation_6tt28"),
+&"GreenLight": SubResource("Animation_h8w65"),
+&"RESET": SubResource("Animation_0a5vh"),
+&"RedLight": SubResource("Animation_1l2fu")
 }
 
-[node name="UiControls" type="Control" node_paths=PackedStringArray("ExitButton", "EffectScreen", "Anim")]
+[node name="UiControls" type="Control" node_paths=PackedStringArray("ExitButton", "EffectScreen", "DedScreen", "Anim", "TimeLabel", "PlayersCountLabel", "FinishLineLabel", "Buttons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,23 +356,38 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("3_bpnom")
 ExitButton = NodePath("Canvas/Exit")
-EffectScreen = NodePath("Canvas/ColorRect")
-Anim = NodePath("Canvas/ColorRect/Anim")
+EffectScreen = NodePath("Canvas/REDorGREEN")
+DedScreen = NodePath("Canvas/DED")
+Anim = NodePath("Canvas/Anim")
+TimeLabel = NodePath("Canvas/AspectRatioContainer/TimeLabel")
+PlayersCountLabel = NodePath("Canvas/PlayersCount")
+FinishLineLabel = NodePath("Canvas/FinishLineDistance")
+Buttons = [NodePath("Canvas/AspectRatioContainer/Right"), NodePath("Canvas/AspectRatioContainer/Left"), NodePath("Canvas/AspectRatioContainer/Up"), NodePath("Canvas/AspectRatioContainer/Run"), NodePath("Canvas/AspectRatioContainer/Push"), NodePath("Canvas/AspectRatioContainer/Down")]
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="Canvas"]
+[node name="Anim" type="AnimationPlayer" parent="Canvas"]
+root_node = NodePath("../REDorGREEN")
+libraries = {
+&"": SubResource("AnimationLibrary_sxyrm")
+}
+
+[node name="DED" type="ColorRect" parent="Canvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.980387, 4.95747e-06, 1.92523e-06, 1)
+
+[node name="REDorGREEN" type="ColorRect" parent="Canvas"]
 modulate = Color(1, 0, 0.0166664, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Anim" type="AnimationPlayer" parent="Canvas/ColorRect"]
-libraries = {
-"": SubResource("AnimationLibrary_sxyrm")
-}
 
 [node name="UpBar" type="ProgressBar" parent="Canvas"]
 visible = false
@@ -208,7 +409,7 @@ rounded = true
 show_percentage = false
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="Canvas"]
-modulate = Color(1, 1, 1, 0.588235)
+modulate = Color(1, 1, 1, 0.784314)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -266,11 +467,44 @@ rotation = 3.14159
 texture_normal = ExtResource("1_im0de")
 action = "ui_down"
 
+[node name="TimeLabel" parent="Canvas/AspectRatioContainer" instance=ExtResource("6_2aq6l")]
+layout_mode = 2
+text = "00:00"
+
 [node name="Exit" type="Button" parent="Canvas"]
 offset_right = 324.0
 offset_bottom = 324.0
 scale = Vector2(0.136557, 0.110832)
-text = "exit"
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("7_pi5is")
+theme_override_font_sizes/font_size = 120
+text = "menu"
 icon = ExtResource("2_p0ruu")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Flag" type="Sprite2D" parent="Canvas"]
+position = Vector2(22, 56.5)
+scale = Vector2(1.375, 1.28125)
+texture = ExtResource("8_dre5n")
+
+[node name="CapyHead" type="Sprite2D" parent="Canvas"]
+position = Vector2(22, 96.5)
+scale = Vector2(1.375, 1.21875)
+texture = ExtResource("9_qxbd1")
+
+[node name="PlayersCount" parent="Canvas" instance=ExtResource("6_2aq6l")]
+modulate = Color(0, 0.73371, 0.736977, 1)
+offset_left = 56.0
+offset_top = 88.0
+offset_right = 75.0
+offset_bottom = 119.0
+text = "0"
+
+[node name="FinishLineDistance" parent="Canvas" instance=ExtResource("6_2aq6l")]
+modulate = Color(0.712617, 0.71016, 0, 1)
+offset_left = 56.0
+offset_top = 48.0
+offset_right = 75.0
+offset_bottom = 79.0
+text = "0"

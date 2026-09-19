@@ -1,35 +1,39 @@
-
 extends Node
+@export var current_state: State
+@export var initial_state: State
+var states: Dictionary = {}
+var actor: CapyActor
 
-var current_state : State
-var states : Dictionary = {}
-
-@export var initial_state : State
-
-func _ready():
-	await get_tree().create_timer(1).timeout
+func initialize(owner_actor: CapyActor) -> void:
+	actor = owner_actor
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
-			child.change.connect(on_child_change)
-	if initial_state:
-		initial_state.enter()
-		current_state = initial_state
+			child.Char = actor
+			if not child.change.is_connected(on_child_change):
+				child.change.connect(on_child_change)
+	if actor.match_controller.session.is_authority() and initial_state:
+		transition(initial_state.name)
 
-func _physics_process(delta : float):
+func step(delta: float) -> void:
+	if not actor.match_controller.session.is_authority():
+		return
+	if actor.outcome != "active":
+		transition("Win" if actor.Win else "Ded")
+	elif actor.Fallen:
+		transition("Fallen")
 	if current_state:
 		current_state.update(delta)
 
-func on_child_change(state, new_state_name):
-	if state != current_state:
-		return
-	
-	var new_state = states.get(new_state_name.to_lower())
-	if !new_state:
+func transition(new_state_name: String) -> void:
+	var next: State = states.get(new_state_name.to_lower())
+	if not next or next == current_state:
 		return
 	if current_state:
 		current_state.exit()
-	
-	new_state.enter()
-	
-	current_state = new_state
+	current_state = next
+	current_state.enter()
+
+func on_child_change(state: State, new_state_name: String) -> void:
+	if state == current_state:
+		transition(new_state_name)

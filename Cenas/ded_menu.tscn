@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtboa351j1hg2"]
+
+[ext_resource type="Script" uid="uid://dwlss2ctbdsun" path="res://Scripts/ded_menu.gd" id="1_2umvt"]
+[ext_resource type="PackedScene" uid="uid://bmduv02bx833o" path="res://CenasInstancias/button.tscn" id="2_d06kr"]
+[ext_resource type="PackedScene" uid="uid://csdjyrjubf400" path="res://CenasInstancias/SOUND.tscn" id="3_1swxi"]
+[ext_resource type="PackedScene" uid="uid://b7m4ame5xm7t4" path="res://CenasInstancias/label.tscn" id="3_m8dfv"]
+[ext_resource type="AudioStream" uid="uid://3yidrj68u75k" path="res://Assets/Sounds/MEOW MEOW MEOW SAD.mp3" id="4_82250"]
+[ext_resource type="Texture2D" uid="uid://dr8wogsmrkmdc" path="res://Assets/Capys/Capy Ded.png" id="4_m8dfv"]
+
+[sub_resource type="Animation" id="Animation_j4wgg"]
+resource_name = "Menu"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8, 1.6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6, 3)
+}
+
+[sub_resource type="Animation" id="Animation_8vmpc"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5cwp"]
+_data = {
+&"Menu": SubResource("Animation_j4wgg"),
+&"RESET": SubResource("Animation_8vmpc")
+}
+
+[node name="DedMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2umvt")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243234, 0.5538, 0.360098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Button" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_d06kr")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="Label" parent="MarginContainer" instance=ExtResource("3_m8dfv")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "TOMOULIS"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(296, 160)
+rotation = 1.5708
+scale = Vector2(2.4, 2.4)
+texture = ExtResource("4_m8dfv")
+hframes = 2
+
+[node name="SAD" parent="." instance=ExtResource("3_1swxi")]
+stream = ExtResource("4_82250")
+volume_db = 0.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v5cwp")
+}
+autoplay = "Menu"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
