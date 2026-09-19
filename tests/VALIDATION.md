@@ -21,7 +21,7 @@ Os cenários automatizados usam execução headless; não são medições gráfi
 - Exportação Windows de depuração e rodada offline no executável exportado: concluídas.
 - APK arm64 de depuração: exportado, alinhado, assinado e verificado pelas ferramentas Android.
 
-O harness é reproduzível pelos comandos do README. Os relatórios detalhados
+O harness é reproduzível pelos comandos do [guia de desenvolvimento](../docs/DESENVOLVIMENTO.md). Os relatórios detalhados
 ficam em `.godot/unit-tests.log`, `.godot/network-tests/` e
 `.godot/network-conditions/`; não são arquivos necessários para distribuir o jogo.
 

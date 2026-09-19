@@ -1,156 +1,120 @@
-# Capy na Batatinha
+<p align="center">
+  <img src="Assets/Ui/CapyHeadIcon.png" alt="Capivara do Capy na Batatinha" width="128">
+</p>
 
-Jogo 2D em Godot com capivaras, NPCs com máquina de estados, singleplayer
-offline e multiplayer por IP para até **8 humanos**, além de NPCs.
+<h1 align="center">Capy na Batatinha</h1>
 
-## Abrir e jogar
+<p align="center">Batatinha frita, 1, 2, 3… com capivaras, empurrões e tropeços!</p>
+<p align="center"><strong>Offline com NPCs · Multiplayer por IP para até 8 humanos</strong></p>
 
-Use **Godot 4.7.2 stable**, versão confirmada nesta máquina:
-`4.7.2.stable.official.ed1daf0bf`. Abra `project.godot` e execute com **F5**.
-A entrada é `Cenas/session.tscn`. `Cenas/main_scene.tscn` permanece como
-fonte do cenário e das configurações visuais da boneca, não como entrada da sessão.
+Um jogo 2D inspirado na brincadeira de sinal verde e sinal vermelho de Round 6.
+Chegue ao final antes que o tempo acabe, pare quando a boneca olhar e dispute
+espaço com outras capivaras. Os NPCs tomam suas próprias decisões.
 
-- **Offline:** escolha aparência e quantidade de NPCs e clique em Offline.
-  Não abre conexão ou porta de rede.
-- **Hospedar:** escolha uma porta (padrão **7000/UDP**) e clique em Hospedar.
-  A sala mostra os IPs locais da máquina.
-- **Entrar por IP:** informe o IP do anfitrião e a mesma porta.
-- Todos marcam pronto; o anfitrião inicia. A contagem de 3 segundos só começa
-  depois de todos carregarem a arena.
-- NPCs são adicionais aos humanos: opções 0, 1, 40, 60 ou 80; padrão 40.
+## Downloads
 
-Na mesma rede Wi-Fi/LAN, use o IP local do anfitrião. Pela internet, use um
-IP público acessível e encaminhe a porta UDP no roteador, se necessário.
-Firewall, isolamento entre clientes Wi-Fi e CGNAT podem impedir a conexão.
-Não há serviço de relay, descoberta automática, contas ou salas por código.
-As duas instalações devem usar a mesma versão do jogo e do protocolo.
+**A primeira prévia multiplayer está em preparação.** A release está sendo
+organizada em rascunho e ainda não foi publicada.
 
-## Controles e regras
+### [Acessar as Releases](https://github.com/CapyRyanMUs/SquidCapy/releases)
 
-| Ação | Teclado |
-|---|---|
+| Plataforma | Pacote da prévia | Instalação |
+| --- | --- | --- |
+| Windows x64 | `CapyMultiplayerWindows.zip` | Extraia o ZIP e abra `CapyMultiplayer.exe`. |
+| Android arm64 | `CapyMultiplayerAndroid.apk` | Baixe e instale o APK no aparelho. |
+
+Os pacotes são **builds de depuração para testes**, não uma versão final ou
+uma publicação em loja. O repositório é privado: após a publicação, os downloads
+exigirão uma conta com acesso a ele. Rascunhos têm acesso ainda mais restrito.
+
+No Windows, mantenha o EXE e o arquivo PCK na mesma pasta; não execute de dentro
+do ZIP. No Android, o sistema pode pedir autorização para instalar aplicativos
+pela fonte usada no download. Não é necessário instalar a Godot para jogar.
+
+**A validação em um Android real ainda está pendente**, incluindo controles,
+áudio e desempenho. Veja o [registro de testes](tests/VALIDATION.md).
+
+## Começar a jogar
+
+1. Abra o jogo e escolha sua aparência.
+2. Para jogar sozinho, selecione a quantidade de NPCs e escolha **Offline**.
+3. Para jogar com amigos, escolha **Hospedar** ou **Entrar por IP**.
+
+O offline funciona sem conexão. É possível escolher **0, 1, 40, 60 ou 80 NPCs**;
+o padrão é 40. No multiplayer, eles são adicionais aos humanos.
+
+## Controles
+
+| Ação | Windows |
+| --- | --- |
 | Mover | Setas |
 | Correr | Shift |
 | Empurrar | Espaço |
-| Levantar após uma queda | Pressionar Ctrl repetidamente |
+| Levantar após cair | Pressionar Ctrl repetidamente |
 
-No Android, as mesmas ações usam os controles de toque. Há risco de tropeçar
-ao correr; humanos e NPCs podem empurrar uns aos outros.
+No Android, use os controles de toque para as mesmas ações.
 
-A rodada dura 75 segundos. O vermelho possui tolerância de 0,7 segundo.
-O anfitrião considera o deslocamento físico efetivo, inclusive empurrões;
-tentar andar contra uma parede sem se deslocar não conta como movimento.
-Quem foi marcado para eliminação não pode ganhar cruzando a chegada durante
-o atraso do disparo.
+A rodada dura **75 segundos**. Correr pode causar tropeços, e humanos e NPCs
+podem empurrar uns aos outros. O sinal vermelho tem tolerância de 0,7 segundo;
+depois disso, deslocar-se pode provocar eliminação, inclusive após um empurrão.
 
-No offline, a vitória ou morte abre o resultado e permite repetir.
-No multiplayer, quem morre ou se classifica assiste aos humanos ainda ativos
-e pode alternar a câmera. A rodada acaba quando todos os humanos têm resultado
-ou o tempo se esgota; NPCs não prolongam a rodada sozinhos.
-O anfitrião retorna todos à sala para outra partida.
+No offline, o resultado permite repetir a partida. No multiplayer, quem morre
+ou chega ao final passa a assistir aos humanos ainda ativos e pode alternar a
+câmera. A rodada termina quando todos os humanos têm resultado ou o tempo acaba.
 
-Quem desconecta durante a disputa abandona e não é substituído por NPC.
-Se o anfitrião sair, todos voltam ao menu. Não há reconexão, migração de
-anfitrião ou entrada depois que o carregamento começa.
+## Jogar com amigos
 
-## Arquitetura e alterações futuras
+Todos devem usar a **mesma versão do jogo**. Windows e Android foram preparados
+para participar da mesma sala; a validação conjunta em aparelho real está pendente.
 
-- `Scripts/session_manager.gd`: sala, ENet, protocolo, carregamento, comandos,
-  replicação, resultados e limpeza de sessão.
-- `Scripts/LightSys.gd` / `MatchController`: relógio, luzes, arena, spawn,
-  avanço da simulação, resultados e câmera de espectador.
-- `Scripts/capy_actor.gd`: regras compartilhadas de movimento, empurrão,
-  queda, morte e classificação. `filo.gd` e `Bot.gd` adaptam as cenas existentes.
-- `States/`: decisões dos NPCs. Transições atribuem o estado antes de
-  executar sua entrada; não há corrotinas ou temporizadores de comportamento pendentes.
-- `Scripts/session_ui.gd`: menu, sala e resultado.
-  `Scripts/UiNode.gd`: HUD e controles do humano local.
-- `Cenas/match_config.tres`: recurso editável com parâmetros de partida;
-  os padrões estão em `Scripts/match_config.gd`.
+### Na mesma rede Wi-Fi ou LAN
 
-O anfitrião executa a simulação a 60 Hz, incluindo IA, sorteios, contatos e
-resultados. Clientes enviam direção/corrida a 20 Hz; empurrar e levantar são
-ações confiáveis com sequência. Origem, frequência e sequência são validadas.
-Comandos de movimento expiram após 250 ms sem atualização.
+1. O anfitrião escolhe **Hospedar**, usando a porta padrão **7000/UDP** ou outra
+   porta disponível. A sala mostra os IPs locais da máquina.
+2. Os amigos escolhem **Entrar por IP**, informam o IP local do anfitrião e a
+   mesma porta.
+3. Todos marcam **Pronto**; o anfitrião inicia a partida.
 
-A admissão usa `SceneMultiplayer.auth_callback` antes de permitir RPCs e
-replicação. Clientes recusados nunca recebem personagens da partida em andamento.
-Não há retransmissão de RPCs diretamente entre clientes.
+Permita a comunicação do jogo no firewall. Redes de convidados e isolamento
+entre dispositivos no Wi-Fi podem impedir a conexão. Não é necessária VPN
+quando os aparelhos conseguem se comunicar diretamente na mesma rede.
 
-`MultiplayerSpawner` cria personagens com IDs estáveis. Snapshots a 20 Hz
-usam blocos compactos de até 20 personagens, abaixo do MTU; eventos e o estado
-final usam entrega confiável. Identificadores de rodada descartam mensagens antigas.
-O movimento local tem previsão e reconciliação, e o remoto é interpolado.
-Resultados, colisões, empurrões e sorteios são sempre decididos pelo anfitrião.
+### Pela internet
 
-O relógio é sincronizado com ping; mudanças de luz são anunciadas 250 ms antes.
-O HUD avisa acima de 200 ms. Não há rebobinamento/compensação retroativa de
-contatos: conexões de alta latência ainda podem sentir correções.
+O anfitrião precisa estar acessível: a conexão direta usa o IP público e pode
+exigir encaminhamento da porta UDP no roteador. Com **CGNAT**, encaminhar a
+porta somente no roteador de casa geralmente não é suficiente.
 
-O modo offline chama a mesma simulação diretamente, usando
-`OfflineMultiplayerPeer`, sem servidor externo. Apenas o humano local
-instancia controles; a câmera pertence à partida.
+Uma alternativa é uma VPN de rede virtual compatível com os dispositivos de
+todos: conectem-se à mesma rede virtual e usem o IP que ela atribuir ao anfitrião.
+A VPN é externa ao jogo; essa configuração ainda precisa ser testada na rede
+e nos aparelhos utilizados.
 
-## Testes automatizados
+**O GitHub hospeda os downloads, não as partidas.** Não há relay integrado,
+matchmaking ou salas por código. A conexão continua dependendo da rede do anfitrião.
 
-Use o executável Godot 4.7.2. Exemplo em PowerShell, a partir da pasta do projeto:
+### Fim da partida e desconexões
 
-```powershell
-$godotExe = 'C:/Users/CapyRyan/Documents/Godot/Godots/Godot_v4.7.2-stable_win64.exe'
-& $godotExe --headless --path . --max-fps 60 --log-file './.godot/unit-tests.log' --script res://tests/run.gd
-./tests/network_smoke.ps1 -Godot $godotExe -Clients 7 -Npcs 80
-python tests/network_conditions.py --godot $godotExe
-```
+- O anfitrião pode retornar todos à sala para outra rodada.
+- Quem desconecta abandona a disputa e não é substituído por NPC.
+- Se o anfitrião sair, a sala termina e todos retornam ao menu.
+- Não há reconexão, migração de anfitrião ou entrada após o início do carregamento.
+- O HUD avisa quando o ping passa de 200 ms; conexões lentas podem apresentar correções de movimento.
 
-O último comando requer Python 3, sem pacotes adicionais.
-O script PowerShell cria processos ocultos e encerra somente os processos
-que ele próprio iniciou. Os logs ficam em `.godot/`, fora do versionamento.
-Confira a linha `TESTS: ... 0 failures`: algumas versões do executável Windows
-sem console não propagam o código de saída como um executável de console.
+## Encontrou um problema?
 
-- `tests/run.gd`: estados, comandos inválidos/repetidos, queda, resultado
-  único, spawn, empurrão físico, parede, codec, reinício e timeout de carregamento.
-- `tests/network_smoke.ps1`: múltiplos processos, número exato de humanos/NPCs,
-  rodada completa e resultados iguais.
-- `tests/network_conditions.py`: proxy UDP em loopback com RTT de 50/100/200 ms,
-  jitter e 1% de perda; jogadores em movimento; protocolo incompatível,
-  saída do anfitrião, entrada tardia, sala cheia e porta ocupada.
+Envie o relato em [Issues](https://github.com/CapyRyanMUs/SquidCapy/issues), com:
 
-Argumentos após `--` usados pelo harness: `--host`, `--join=127.0.0.1`,
-`--port=17000`, `--auto-ready`, `--start-after=4`, `--npcs=40`,
-`--test-duration=8`, `--test-walk`, `--quit-after=20`, `--report`.
-São ferramentas locais de desenvolvimento, não opções recebidas de clientes.
+- Versão ou nome da release e plataforma; no Android, modelo do aparelho.
+- Modo offline ou multiplayer e quem estava hospedando.
+- Passos para reproduzir, resultado esperado e o que aconteceu.
+- Mensagem de erro e, se possível, imagem ou vídeo.
 
-## Exportação Windows e Android
+## Desenvolvimento e testes
 
-Os presets existentes foram preservados e a permissão Android
-`permissions/internet` foi ativada. O projeto continua usando o renderizador
-Mobile, resolução-base 576 × 324 e os recursos gráficos/sons existentes.
+Feito em **Godot 4.7.2 stable**. Para abrir o projeto, executar os testes,
+entender a arquitetura e exportar os pacotes, consulte:
 
-Foram instalados os componentes Windows x86_64 e Android dos
-[templates oficiais 4.7.2](https://godotengine.org/download/archive/4.7.2-stable/),
-mantendo os templates 4.4 existentes. SHA-256 do pacote oficial verificado:
-`f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011`.
-Em outra máquina, instale os templates dessa mesma versão.
-
-Windows e APK Android de depuração foram exportados com sucesso. O executável
-Windows exportado também concluiu uma rodada offline em headless.
-O Android usou o SDK/JDK já configurado e build-tools 35.0.1; a engine informou
-que não encontrou build-tools com a mesma versão do Target SDK e utilizou
-35.0.1, conseguindo alinhar, assinar e verificar o APK. SDK e engine não foram atualizados.
-
-Pacotes de teste: `builds/CapyMultiplayerWindows.zip` (extraia EXE e PCK juntos)
-e `builds/CapyMultiplayerAndroid.apk`. São builds de depuração, não uma publicação
-em loja. A pasta `builds/` é ignorada pelo Git.
-Os caminhos de exportação antigos dos presets ficam fora desta pasta; os
-testes usaram caminhos explícitos dentro de `.godot/builds/`.
-
-## Validação em aparelhos e limitações
-
-Veja `tests/VALIDATION.md` para resultados e roteiro pendente.
-Os testes em processos locais não substituem medir FPS, controles e conforto
-do movimento em um Android real e em uma rede Wi-Fi real.
-
-Não foram adicionadas novas fases, alterações de arte, matchmaking, servidor
-dedicado ou proteção contra um anfitrião malicioso. O anfitrião é a autoridade
-confiável da sala.
+- [Guia de desenvolvimento](docs/DESENVOLVIMENTO.md).
+- [Resultados e roteiro de validação](tests/VALIDATION.md).
+- [Notas da Prévia Multiplayer 1](docs/releases/multiplayer-preview-1.md).
