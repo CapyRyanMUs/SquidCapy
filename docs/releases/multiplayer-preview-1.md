@@ -21,8 +21,7 @@ real, incluindo controles, áudio e desempenho, ainda está pendente.
 | `SHA256SUMS.txt` | Hashes SHA-256 dos dois pacotes para conferir a integridade. |
 
 Não é necessário instalar a Godot. O APK usa assinatura de depuração e não é
-uma publicação em loja. Os downloads deste repositório privado exigem acesso
-ao repositório; o rascunho não é uma distribuição pública.
+uma publicação em loja. Os downloads estão disponíveis nesta release pública.
 
 ## Controles
 
@@ -62,7 +61,7 @@ com plataforma, versão, passos para reproduzir e mensagem de erro.
 
 ## Referência da entrega
 
-Tag prevista: `multiplayer-preview-1`.
+Tag: `multiplayer-preview-1`.
 Commit de referência: `66b239e83dc1bba0553c5b877df216bf24db4655`.
 As versões internas existentes foram preservadas: projeto `1.0` e Android
 `1.5` (código 6). O nome desta prévia identifica os pacotes distribuídos.
